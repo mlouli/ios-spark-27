@@ -5,10 +5,9 @@ import SwiftUI
 /// an image is cached, landing on its story is an instant, synchronous render
 /// with no placeholder flash and no decode hitch — the key to smooth, rapid
 /// tapping through stories.
-final class StoryImageLoader {
+actor StoryImageLoader {
     static let shared = StoryImageLoader()
     private let cache = NSCache<NSURL, UIImage>()
-    private let lock = NSLock()
     private var inFlight: Set<URL> = []
 
     private init() {
@@ -36,16 +35,18 @@ final class StoryImageLoader {
     func prefetch(_ urls: [URL]) {
         for url in urls {
             guard cache.object(forKey: url as NSURL) == nil else { continue }
-            lock.lock()
-            let isLoading = inFlight.contains(url)
-            if !isLoading { inFlight.insert(url) }
-            lock.unlock()
-            guard !isLoading else { continue }
+            guard !inFlight.contains(url) else { continue }
+            inFlight.insert(url)
+            
             Task {
                 _ = await loadImage(for: url)
-                lock.lock(); inFlight.remove(url); lock.unlock()
+                await markComplete(url)
             }
         }
+    }
+    
+    private func markComplete(_ url: URL) {
+        inFlight.remove(url)
     }
 }
 

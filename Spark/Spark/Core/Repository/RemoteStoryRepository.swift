@@ -19,6 +19,8 @@ actor RemoteStoryRepository: StoryRepositoryProtocol {
     private let monitor = NWPathMonitor()
     private let monitorQueue = DispatchQueue(label: "\(AppConfig.bundleID).remoteNetworkMonitor")
     private var isConnected = true
+    private let encoder = JSONEncoder()
+    private let decoder = JSONDecoder()
 
     init() {
         monitor.pathUpdateHandler = { [weak self] path in
@@ -145,14 +147,14 @@ actor RemoteStoryRepository: StoryRepositoryProtocol {
 
     private func cachedState() -> UserState {
         guard let data = UserDefaults.standard.data(forKey: stateKey),
-              let state = try? JSONDecoder().decode(UserState.self, from: data) else {
+              let state = try? decoder.decode(UserState.self, from: data) else {
             return UserState()
         }
         return state
     }
 
     private func persistState(_ state: UserState) {
-        guard let data = try? JSONEncoder().encode(state) else { return }
+        guard let data = try? encoder.encode(state) else { return }
         UserDefaults.standard.set(data, forKey: stateKey)
     }
 }

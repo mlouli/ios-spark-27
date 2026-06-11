@@ -2,7 +2,7 @@ import Foundation
 import OSLog
 
 enum AppConfig {
-    static let bundleID = Bundle.main.bundleIdentifier ?? "app.spark.Spark"
+	nonisolated(unsafe) static let bundleID = Bundle.main.bundleIdentifier ?? "app.spark.Spark"
 }
 
 enum AppLogger {
