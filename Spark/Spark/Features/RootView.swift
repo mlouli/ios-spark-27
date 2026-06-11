@@ -8,9 +8,9 @@ struct RootView: View {
     }
 
     var body: some View {
-		NavigationStack {
-			let vm = coordinator.makeStoriesViewModel()
+		let vm = coordinator.makeStoriesViewModel()
 
+		NavigationStack {
 			ScrollView {
 				VStack {
 					StoriesView(viewModel: vm)
@@ -18,13 +18,13 @@ struct RootView: View {
 					feedPlaceholder
 				}
 			}
-			.overlay {
-				if let context = coordinator.storyDetailContext {
-					storyDetail(vm, context)
-				}
-			}
 			.navigationTitle("Spark")
 			.navigationBarTitleDisplayMode(.inline)
+		}
+		.overlay {
+			if let context = coordinator.storyDetailContext {
+				storyDetail(vm, context)
+			}
 		}
     }
 
