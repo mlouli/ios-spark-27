@@ -8,22 +8,9 @@ struct StoriesView: View {
     }
 
     var body: some View {
-        NavigationStack {
-            ScrollView {
-				VStack {
-					storiesRow
-					Divider()
-					feedPlaceholder
-				}
-            }
-            .navigationTitle("Spark")
-            .navigationBarTitleDisplayMode(.inline)
-            .refreshable { await viewModel.refresh() }
-        }
-        .task {
-            await viewModel.load()
-            viewModel.openPendingDeepLink()
-        }
+		storiesRow
+			.refreshable { await viewModel.refresh() }
+			.task { await viewModel.load() }
     }
 
     // MARK: - Stories row
@@ -104,26 +91,11 @@ struct StoriesView: View {
         .padding(.horizontal, 16)
         .frame(height: 120)
     }
-
-    // MARK: - Feed placeholder
-
-    private var feedPlaceholder: some View {
-        VStack(spacing: 16) {
-            ForEach(0..<6, id: \.self) { _ in
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(Color(.systemGray6))
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 300)
-                    .padding(.horizontal, 16)
-            }
-        }
-        .padding(.top, 12)
-    }
 }
 
 #Preview("Normal") {
     let coordinator = AppCoordinator(dependencies: MockDependencyContainer(state: PreviewMocks.userState))
-    StoriesView(viewModel: coordinator.makeStoriesViewModel())
+	StoriesView(viewModel: coordinator.makeStoriesViewModel())
 }
 
 #Preview("Empty (no stories)") {

@@ -198,25 +198,4 @@ struct StoriesViewModelTests {
         #expect(coordinator.storyDetailContext?.startIndex == 1)
         #expect(coordinator.storyDetailContext?.users.count == 3)
     }
-
-    @Test func openPendingDeepLinkSelectsMatchingUser() async {
-        let users = makeUsers(count: 3)
-        let repo = MockStoryRepository(pages: [users])
-        let coordinator = AppCoordinator(dependencies: MockDependencyContainer(repository: repo))
-        let vm = coordinator.makeStoriesViewModel()
-        await vm.loadMore()
-        coordinator.handle(url: URL(string: "spark://story/\(users[2].id)")!)
-        vm.openPendingDeepLink()
-        #expect(coordinator.storyDetailContext?.startIndex == 2)
-    }
-
-    @Test func openPendingDeepLinkIgnoresUnknownUser() async {
-        let repo = MockStoryRepository(pages: [makeUsers(count: 3)])
-        let coordinator = AppCoordinator(dependencies: MockDependencyContainer(repository: repo))
-        let vm = coordinator.makeStoriesViewModel()
-        await vm.loadMore()
-        coordinator.handle(url: URL(string: "spark://story/nonexistent")!)
-        vm.openPendingDeepLink()
-        #expect(coordinator.storyDetailContext == nil)
-    }
 }

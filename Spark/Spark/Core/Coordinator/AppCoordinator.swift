@@ -5,7 +5,9 @@ import Observation
 final class AppCoordinator {
     var storyDetailContext: StoryDetailContext?
     private(set) var pendingUserID: String?
-    let dependencies: DependencyContainerProtocol
+	let dependencies: DependencyContainerProtocol
+
+	var storiesViewModel: StoriesViewModel?
 
     struct StoryDetailContext: Identifiable {
         let id = UUID()
@@ -51,18 +53,11 @@ final class AppCoordinator {
         storyDetailContext = StoryDetailContext(users: users, startIndex: startIndex, userState: userState)
     }
 
-    func dismissStories() {
+	func dismissStories(lastUserID: String? = nil) {
         storyDetailContext = nil
-    }
 
-    // spark://story/{userID}
-    func handle(url: URL) {
-        guard url.scheme == "spark", url.host == "story" else { return }
-        pendingUserID = url.lastPathComponent
-    }
-
-    func consumePendingUserID() -> String? {
-        defer { pendingUserID = nil }
-        return pendingUserID
+		if let lastUserID {
+			storiesViewModel?.scrollToUser(id: lastUserID)
+		}
     }
 }

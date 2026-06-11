@@ -90,12 +90,6 @@ final class StoriesViewModel {
         )
     }
 
-    func openPendingDeepLink() {
-        guard let userID = coordinator?.consumePendingUserID(),
-              let index = displayedUsers.firstIndex(where: { $0.id == userID }) else { return }
-        selectUser(at: index)
-    }
-
     // MARK: - Pagination
 
     func loadNextPageIfNeeded(currentUser: StoryUser) {
