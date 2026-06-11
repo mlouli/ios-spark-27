@@ -51,7 +51,9 @@ struct StoriesView: View {
                     }
                 }
                 .padding(.horizontal, 12)
+				.frame(height: 120)
             }
+			.frame(height: 120)
             .onChange(of: viewModel.scrollTargetUserID) { _, id in
                 guard let id else { return }
                 withAnimation(.easeInOut(duration: 0.35)) {
