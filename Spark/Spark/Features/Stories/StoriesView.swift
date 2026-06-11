@@ -9,7 +9,6 @@ struct StoriesView: View {
 
     var body: some View {
 		storiesRow
-			.refreshable { await viewModel.refresh() }
 			.task { await viewModel.load() }
     }
 

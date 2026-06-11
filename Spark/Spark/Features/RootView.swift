@@ -18,6 +18,7 @@ struct RootView: View {
 					feedPlaceholder
 				}
 			}
+			.refreshable { await storiesViewModel.refresh() }
 			.navigationTitle("Spark")
 			.navigationBarTitleDisplayMode(.inline)
 		}
