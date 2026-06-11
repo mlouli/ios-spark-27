@@ -4,10 +4,33 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Spark (local).xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>Spark.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>FF63AB8A2FD95AE0004C448C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FF63AB992FD95AE1004C448C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FF63ABA32FD95AE1004C448C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

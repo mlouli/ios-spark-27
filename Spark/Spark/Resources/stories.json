@@ -1,0 +1,76 @@
+[
+  {
+    "id": "user_1",
+    "username": "aurora.wild",
+    "avatarSeed": "aurora_wild",
+    "stories": [
+      { "id": "story_1_1", "imageSeed": "mountain_dawn", "caption": "First light on the peaks 🏔️", "timestamp": "2026-06-10T06:30:00Z" },
+      { "id": "story_1_2", "imageSeed": "forest_mist", "caption": "Lost in the woods 🌲", "timestamp": "2026-06-10T09:15:00Z" }
+    ]
+  },
+  {
+    "id": "user_2",
+    "username": "leo.frames",
+    "avatarSeed": "leo_frames",
+    "stories": [
+      { "id": "story_2_1", "imageSeed": "city_sunset", "caption": "Golden hour never gets old 🌇", "timestamp": "2026-06-10T07:00:00Z" },
+      { "id": "story_2_2", "imageSeed": "rooftop_view", "caption": "Up here the noise fades away", "timestamp": "2026-06-10T11:00:00Z" },
+      { "id": "story_2_3", "imageSeed": "night_lights", "caption": "The city never sleeps ✨", "timestamp": "2026-06-10T22:00:00Z" }
+    ]
+  },
+  {
+    "id": "user_3",
+    "username": "mia.journeys",
+    "avatarSeed": "mia_journeys",
+    "stories": [
+      { "id": "story_3_1", "imageSeed": "desert_road", "caption": "Miles of nothing, everything 🏜️", "timestamp": "2026-06-10T08:00:00Z" }
+    ]
+  },
+  {
+    "id": "user_4",
+    "username": "kai.surf",
+    "avatarSeed": "kai_surf",
+    "stories": [
+      { "id": "story_4_1", "imageSeed": "ocean_wave", "caption": "Caught the best one today 🌊", "timestamp": "2026-06-10T06:00:00Z" },
+      { "id": "story_4_2", "imageSeed": "beach_sunset", "caption": "End of a perfect day 🌅", "timestamp": "2026-06-10T18:30:00Z" }
+    ]
+  },
+  {
+    "id": "user_5",
+    "username": "nina.bakes",
+    "avatarSeed": "nina_bakes",
+    "stories": [
+      { "id": "story_5_1", "imageSeed": "bakery_morning", "caption": "Fresh batch ready ☕", "timestamp": "2026-06-10T07:30:00Z" },
+      { "id": "story_5_2", "imageSeed": "sourdough_loaf", "caption": "72h fermentation. Worth it.", "timestamp": "2026-06-10T12:00:00Z" },
+      { "id": "story_5_3", "imageSeed": "latte_art", "caption": "Poured my heart into this one ❤️", "timestamp": "2026-06-10T15:00:00Z" }
+    ]
+  },
+  {
+    "id": "user_6",
+    "username": "omar.lens",
+    "avatarSeed": "omar_lens",
+    "stories": [
+      { "id": "story_6_1", "imageSeed": "street_photo", "caption": "Decisive moment 📸", "timestamp": "2026-06-10T10:00:00Z" },
+      { "id": "story_6_2", "imageSeed": "portrait_light", "caption": "Natural light only 🎞️", "timestamp": "2026-06-10T14:00:00Z" }
+    ]
+  },
+  {
+    "id": "user_7",
+    "username": "sara.roots",
+    "avatarSeed": "sara_roots",
+    "stories": [
+      { "id": "story_7_1", "imageSeed": "garden_bloom", "caption": "Everything is coming up roses 🌹", "timestamp": "2026-06-10T09:00:00Z" },
+      { "id": "story_7_2", "imageSeed": "herb_garden", "caption": "Growing my own kitchen 🌿", "timestamp": "2026-06-10T13:00:00Z" }
+    ]
+  },
+  {
+    "id": "user_8",
+    "username": "felix.builds",
+    "avatarSeed": "felix_builds",
+    "stories": [
+      { "id": "story_8_1", "imageSeed": "workshop_tools", "caption": "New project starts today 🔨", "timestamp": "2026-06-10T08:30:00Z" },
+      { "id": "story_8_2", "imageSeed": "timber_frame", "caption": "Taking shape 🪵", "timestamp": "2026-06-10T16:00:00Z" },
+      { "id": "story_8_3", "imageSeed": "finished_shelf", "caption": "Done. Proud. 💪", "timestamp": "2026-06-10T19:00:00Z" }
+    ]
+  }
+]

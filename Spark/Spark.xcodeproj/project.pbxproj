@@ -6,15 +6,52 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		FF63ABFA2FD95E67004C448C /* SparkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63ABF82FD95E67004C448C /* SparkTests.swift */; };
+		FF63AC872FD9AA72004C448C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF63AC7E2FD9AA72004C448C /* Assets.xcassets */; };
+		FF63AC882FD9AA72004C448C /* stories.json in Resources */ = {isa = PBXBuildFile; fileRef = FF63AC7F2FD9AA72004C448C /* stories.json */; };
+		FF63ACC82FD9BDF0004C448C /* DependencyContainerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63ACA32FD9BDF0004C448C /* DependencyContainerProtocol.swift */; };
+		FF63ACC92FD9BDF0004C448C /* StoryUserPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63ACBC2FD9BDF0004C448C /* StoryUserPageView.swift */; };
+		FF63ACCA2FD9BDF0004C448C /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63ACAB2FD9BDF0004C448C /* NetworkClient.swift */; };
+		FF63ACCB2FD9BDF0004C448C /* UserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63ACA82FD9BDF0004C448C /* UserState.swift */; };
+		FF63ACCC2FD9BDF0004C448C /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63ACA62FD9BDF0004C448C /* Story.swift */; };
+		FF63ACCD2FD9BDF0004C448C /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63ACAA2FD9BDF0004C448C /* APIEndpoint.swift */; };
+		FF63ACCE2FD9BDF0004C448C /* DeviceID.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63ACB32FD9BDF0004C448C /* DeviceID.swift */; };
+		FF63ACCF2FD9BDF0004C448C /* StoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63ACB62FD9BDF0004C448C /* StoriesView.swift */; };
+		FF63ACD02FD9BDF0004C448C /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63ACC02FD9BDF0004C448C /* RootView.swift */; };
+		FF63ACD12FD9BDF0004C448C /* MockDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63ACA42FD9BDF0004C448C /* MockDependencyContainer.swift */; };
+		FF63ACD22FD9BDF0004C448C /* StoryAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63ACC22FD9BDF0004C448C /* StoryAvatarView.swift */; };
+		FF63ACD32FD9BDF0004C448C /* StoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63ACB92FD9BDF0004C448C /* StoryDetailView.swift */; };
+		FF63ACD42FD9BDF0004C448C /* LocalStoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63ACAE2FD9BDF0004C448C /* LocalStoryRepository.swift */; };
+		FF63ACD52FD9BDF0004C448C /* PreviewMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63ACC52FD9BDF0004C448C /* PreviewMocks.swift */; };
+		FF63ACD62FD9BDF0004C448C /* StoryUserPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63ACBD2FD9BDF0004C448C /* StoryUserPageViewModel.swift */; };
+		FF63ACD72FD9BDF0004C448C /* StoryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63ACBA2FD9BDF0004C448C /* StoryDetailViewModel.swift */; };
+		FF63ACD82FD9BDF0004C448C /* StoryProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63ACC32FD9BDF0004C448C /* StoryProgressBar.swift */; };
+		FF63ACD92FD9BDF0004C448C /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63ACA22FD9BDF0004C448C /* DependencyContainer.swift */; };
+		FF63ACDA2FD9BDF0004C448C /* MockStoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63ACAF2FD9BDF0004C448C /* MockStoryRepository.swift */; };
+		FF63ACDB2FD9BDF0004C448C /* SparkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63ACC72FD9BDF0004C448C /* SparkApp.swift */; };
+		FF63ACDC2FD9BDF0004C448C /* StoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63ACB12FD9BDF0004C448C /* StoryRepository.swift */; };
+		FF63ACDD2FD9BDF0004C448C /* StoryCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63ACAC2FD9BDF0004C448C /* StoryCache.swift */; };
+		FF63ACDE2FD9BDF0004C448C /* RemoteStoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63ACB02FD9BDF0004C448C /* RemoteStoryRepository.swift */; };
+		FF63ACDF2FD9BDF0004C448C /* StoryUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63ACA72FD9BDF0004C448C /* StoryUser.swift */; };
+		FF63ACE02FD9BDF0004C448C /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63ACA02FD9BDF0004C448C /* AppCoordinator.swift */; };
+		FF63ACE12FD9BDF0004C448C /* StoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63ACB72FD9BDF0004C448C /* StoriesViewModel.swift */; };
+		FF63ACEF2FD9BDF0004C448C /* EmptyStoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63ACEE2FD9BDF0004C448C /* EmptyStoryRepository.swift */; };
+		FF63ACF02FD9BDF0004C448C /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63ACF12FD9BDF0004C448C /* AppLogger.swift */; };
+		FF63ACF22FD9BDF0004C448C /* CachedStoryImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63ACF32FD9BDF0004C448C /* CachedStoryImage.swift */; };
+		FF63ACF42FD9BDF0004C448C /* CubePager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63ACF52FD9BDF0004C448C /* CubePager.swift */; };
+		FFAC000000000000000000A1 /* TestSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAB000000000000000000A1 /* TestSupport.swift */; };
+		FFAC000000000000000000A2 /* StoriesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAB000000000000000000A2 /* StoriesViewModelTests.swift */; };
+		FFAC000000000000000000A3 /* StoryDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAB000000000000000000A3 /* StoryDetailViewModelTests.swift */; };
+		FFAC000000000000000000A4 /* StoryUserPageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAB000000000000000000A4 /* StoryUserPageViewModelTests.swift */; };
+		FFAC000000000000000000A5 /* AppCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAB000000000000000000A5 /* AppCoordinatorTests.swift */; };
+		FFAC000000000000000000A6 /* StoryCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAB000000000000000000A6 /* StoryCacheTests.swift */; };
+		FFAC000000000000000000A7 /* RepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAB000000000000000000A7 /* RepositoryTests.swift */; };
+		FFAC000000000000000000A8 /* ModelAndEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAB000000000000000000A8 /* ModelAndEndpointTests.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		FF63AB9B2FD95AE1004C448C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FF63AB832FD95AE0004C448C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FF63AB8A2FD95AE0004C448C;
-			remoteInfo = Spark;
-		};
-		FF63ABA52FD95AE1004C448C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FF63AB832FD95AE0004C448C /* Project object */;
 			proxyType = 1;
@@ -26,26 +63,48 @@
 /* Begin PBXFileReference section */
 		FF63AB8B2FD95AE0004C448C /* Spark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF63AB9A2FD95AE1004C448C /* SparkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SparkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FF63ABA42FD95AE1004C448C /* SparkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SparkUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF63ABF82FD95E67004C448C /* SparkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkTests.swift; sourceTree = "<group>"; };
+		FF63AC7E2FD9AA72004C448C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FF63AC7F2FD9AA72004C448C /* stories.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stories.json; sourceTree = "<group>"; };
+		FF63ACA02FD9BDF0004C448C /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		FF63ACA22FD9BDF0004C448C /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
+		FF63ACA32FD9BDF0004C448C /* DependencyContainerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainerProtocol.swift; sourceTree = "<group>"; };
+		FF63ACA42FD9BDF0004C448C /* MockDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDependencyContainer.swift; sourceTree = "<group>"; };
+		FF63ACA62FD9BDF0004C448C /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
+		FF63ACA72FD9BDF0004C448C /* StoryUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryUser.swift; sourceTree = "<group>"; };
+		FF63ACA82FD9BDF0004C448C /* UserState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserState.swift; sourceTree = "<group>"; };
+		FF63ACAA2FD9BDF0004C448C /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
+		FF63ACAB2FD9BDF0004C448C /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		FF63ACAC2FD9BDF0004C448C /* StoryCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCache.swift; sourceTree = "<group>"; };
+		FF63ACAE2FD9BDF0004C448C /* LocalStoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStoryRepository.swift; sourceTree = "<group>"; };
+		FF63ACAF2FD9BDF0004C448C /* MockStoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockStoryRepository.swift; sourceTree = "<group>"; };
+		FF63ACB02FD9BDF0004C448C /* RemoteStoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteStoryRepository.swift; sourceTree = "<group>"; };
+		FF63ACB12FD9BDF0004C448C /* StoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryRepository.swift; sourceTree = "<group>"; };
+		FF63ACB32FD9BDF0004C448C /* DeviceID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceID.swift; sourceTree = "<group>"; };
+		FF63ACB62FD9BDF0004C448C /* StoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesView.swift; sourceTree = "<group>"; };
+		FF63ACB72FD9BDF0004C448C /* StoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesViewModel.swift; sourceTree = "<group>"; };
+		FF63ACB92FD9BDF0004C448C /* StoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryDetailView.swift; sourceTree = "<group>"; };
+		FF63ACBA2FD9BDF0004C448C /* StoryDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryDetailViewModel.swift; sourceTree = "<group>"; };
+		FF63ACBC2FD9BDF0004C448C /* StoryUserPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryUserPageView.swift; sourceTree = "<group>"; };
+		FF63ACBD2FD9BDF0004C448C /* StoryUserPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryUserPageViewModel.swift; sourceTree = "<group>"; };
+		FF63ACC02FD9BDF0004C448C /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		FF63ACC22FD9BDF0004C448C /* StoryAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryAvatarView.swift; sourceTree = "<group>"; };
+		FF63ACC32FD9BDF0004C448C /* StoryProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryProgressBar.swift; sourceTree = "<group>"; };
+		FF63ACC52FD9BDF0004C448C /* PreviewMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewMocks.swift; sourceTree = "<group>"; };
+		FF63ACC72FD9BDF0004C448C /* SparkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparkApp.swift; sourceTree = "<group>"; };
+		FF63ACEE2FD9BDF0004C448C /* EmptyStoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStoryRepository.swift; sourceTree = "<group>"; };
+		FF63ACF12FD9BDF0004C448C /* AppLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogger.swift; sourceTree = "<group>"; };
+		FF63ACF32FD9BDF0004C448C /* CachedStoryImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedStoryImage.swift; sourceTree = "<group>"; };
+		FF63ACF52FD9BDF0004C448C /* CubePager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubePager.swift; sourceTree = "<group>"; };
+		FFAB000000000000000000A1 /* TestSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSupport.swift; sourceTree = "<group>"; };
+		FFAB000000000000000000A2 /* StoriesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesViewModelTests.swift; sourceTree = "<group>"; };
+		FFAB000000000000000000A3 /* StoryDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryDetailViewModelTests.swift; sourceTree = "<group>"; };
+		FFAB000000000000000000A4 /* StoryUserPageViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryUserPageViewModelTests.swift; sourceTree = "<group>"; };
+		FFAB000000000000000000A5 /* AppCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorTests.swift; sourceTree = "<group>"; };
+		FFAB000000000000000000A6 /* StoryCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCacheTests.swift; sourceTree = "<group>"; };
+		FFAB000000000000000000A7 /* RepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTests.swift; sourceTree = "<group>"; };
+		FFAB000000000000000000A8 /* ModelAndEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelAndEndpointTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		FF63AB8D2FD95AE0004C448C /* Spark */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Spark;
-			sourceTree = "<group>";
-		};
-		FF63AB9D2FD95AE1004C448C /* SparkTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = SparkTests;
-			sourceTree = "<group>";
-		};
-		FF63ABA72FD95AE1004C448C /* SparkUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = SparkUITests;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		FF63AB882FD95AE0004C448C /* Frameworks */ = {
@@ -62,22 +121,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FF63ABA12FD95AE1004C448C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		FF63AB822FD95AE0004C448C = {
 			isa = PBXGroup;
 			children = (
-				FF63AB8D2FD95AE0004C448C /* Spark */,
-				FF63AB9D2FD95AE1004C448C /* SparkTests */,
-				FF63ABA72FD95AE1004C448C /* SparkUITests */,
+				FF63ABE92FD95E63004C448C /* Spark */,
+				FF63ABF92FD95E67004C448C /* SparkTests */,
 				FF63AB8C2FD95AE0004C448C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -87,9 +138,183 @@
 			children = (
 				FF63AB8B2FD95AE0004C448C /* Spark.app */,
 				FF63AB9A2FD95AE1004C448C /* SparkTests.xctest */,
-				FF63ABA42FD95AE1004C448C /* SparkUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		FF63ABE92FD95E63004C448C /* Spark */ = {
+			isa = PBXGroup;
+			children = (
+				FF63ACB52FD9BDF0004C448C /* Core */,
+				FF63ACC12FD9BDF0004C448C /* Features */,
+				FF63ACC62FD9BDF0004C448C /* Shared */,
+				FF63ACC72FD9BDF0004C448C /* SparkApp.swift */,
+				FF63AC802FD9AA72004C448C /* Resources */,
+			);
+			path = Spark;
+			sourceTree = "<group>";
+		};
+		FF63ABF92FD95E67004C448C /* SparkTests */ = {
+			isa = PBXGroup;
+			children = (
+				FF63ABF82FD95E67004C448C /* SparkTests.swift */,
+				FFAB000000000000000000A1 /* TestSupport.swift */,
+				FFAB000000000000000000A2 /* StoriesViewModelTests.swift */,
+				FFAB000000000000000000A3 /* StoryDetailViewModelTests.swift */,
+				FFAB000000000000000000A4 /* StoryUserPageViewModelTests.swift */,
+				FFAB000000000000000000A5 /* AppCoordinatorTests.swift */,
+				FFAB000000000000000000A6 /* StoryCacheTests.swift */,
+				FFAB000000000000000000A7 /* RepositoryTests.swift */,
+				FFAB000000000000000000A8 /* ModelAndEndpointTests.swift */,
+			);
+			path = SparkTests;
+			sourceTree = "<group>";
+		};
+		FF63AC802FD9AA72004C448C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FF63AC7E2FD9AA72004C448C /* Assets.xcassets */,
+				FF63AC7F2FD9AA72004C448C /* stories.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		FF63ACA12FD9BDF0004C448C /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				FF63ACA02FD9BDF0004C448C /* AppCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		FF63ACA52FD9BDF0004C448C /* DependencyContainer */ = {
+			isa = PBXGroup;
+			children = (
+				FF63ACA22FD9BDF0004C448C /* DependencyContainer.swift */,
+				FF63ACA32FD9BDF0004C448C /* DependencyContainerProtocol.swift */,
+				FF63ACA42FD9BDF0004C448C /* MockDependencyContainer.swift */,
+			);
+			path = DependencyContainer;
+			sourceTree = "<group>";
+		};
+		FF63ACA92FD9BDF0004C448C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FF63ACA62FD9BDF0004C448C /* Story.swift */,
+				FF63ACA72FD9BDF0004C448C /* StoryUser.swift */,
+				FF63ACA82FD9BDF0004C448C /* UserState.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FF63ACAD2FD9BDF0004C448C /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				FF63ACAA2FD9BDF0004C448C /* APIEndpoint.swift */,
+				FF63ACAB2FD9BDF0004C448C /* NetworkClient.swift */,
+				FF63ACAC2FD9BDF0004C448C /* StoryCache.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		FF63ACB22FD9BDF0004C448C /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				FF63ACAE2FD9BDF0004C448C /* LocalStoryRepository.swift */,
+				FF63ACEE2FD9BDF0004C448C /* EmptyStoryRepository.swift */,
+				FF63ACAF2FD9BDF0004C448C /* MockStoryRepository.swift */,
+				FF63ACB02FD9BDF0004C448C /* RemoteStoryRepository.swift */,
+				FF63ACB12FD9BDF0004C448C /* StoryRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		FF63ACB42FD9BDF0004C448C /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				FF63ACB32FD9BDF0004C448C /* DeviceID.swift */,
+				FF63ACF12FD9BDF0004C448C /* AppLogger.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		FF63ACB52FD9BDF0004C448C /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				FF63ACA12FD9BDF0004C448C /* Coordinator */,
+				FF63ACA52FD9BDF0004C448C /* DependencyContainer */,
+				FF63ACA92FD9BDF0004C448C /* Models */,
+				FF63ACAD2FD9BDF0004C448C /* Network */,
+				FF63ACB22FD9BDF0004C448C /* Repository */,
+				FF63ACB42FD9BDF0004C448C /* Utils */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		FF63ACB82FD9BDF0004C448C /* Stories */ = {
+			isa = PBXGroup;
+			children = (
+				FF63ACB62FD9BDF0004C448C /* StoriesView.swift */,
+				FF63ACB72FD9BDF0004C448C /* StoriesViewModel.swift */,
+			);
+			path = Stories;
+			sourceTree = "<group>";
+		};
+		FF63ACBB2FD9BDF0004C448C /* StoryDetail */ = {
+			isa = PBXGroup;
+			children = (
+				FF63ACB92FD9BDF0004C448C /* StoryDetailView.swift */,
+				FF63ACBA2FD9BDF0004C448C /* StoryDetailViewModel.swift */,
+			);
+			path = StoryDetail;
+			sourceTree = "<group>";
+		};
+		FF63ACBE2FD9BDF0004C448C /* StoryUserPage */ = {
+			isa = PBXGroup;
+			children = (
+				FF63ACBC2FD9BDF0004C448C /* StoryUserPageView.swift */,
+				FF63ACBD2FD9BDF0004C448C /* StoryUserPageViewModel.swift */,
+			);
+			path = StoryUserPage;
+			sourceTree = "<group>";
+		};
+		FF63ACBF2FD9BDF0004C448C /* StoryDetail */ = {
+			isa = PBXGroup;
+			children = (
+				FF63ACBB2FD9BDF0004C448C /* StoryDetail */,
+				FF63ACBE2FD9BDF0004C448C /* StoryUserPage */,
+			);
+			path = StoryDetail;
+			sourceTree = "<group>";
+		};
+		FF63ACC12FD9BDF0004C448C /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				FF63ACB82FD9BDF0004C448C /* Stories */,
+				FF63ACBF2FD9BDF0004C448C /* StoryDetail */,
+				FF63ACC02FD9BDF0004C448C /* RootView.swift */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		FF63ACC42FD9BDF0004C448C /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				FF63ACC22FD9BDF0004C448C /* StoryAvatarView.swift */,
+				FF63ACC32FD9BDF0004C448C /* StoryProgressBar.swift */,
+				FF63ACF32FD9BDF0004C448C /* CachedStoryImage.swift */,
+				FF63ACF52FD9BDF0004C448C /* CubePager.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		FF63ACC62FD9BDF0004C448C /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				FF63ACC42FD9BDF0004C448C /* Components */,
+				FF63ACC52FD9BDF0004C448C /* PreviewMocks.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -106,9 +331,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				FF63AB8D2FD95AE0004C448C /* Spark */,
 			);
 			name = Spark;
 			packageProductDependencies = (
@@ -130,38 +352,12 @@
 			dependencies = (
 				FF63AB9C2FD95AE1004C448C /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				FF63AB9D2FD95AE1004C448C /* SparkTests */,
-			);
 			name = SparkTests;
 			packageProductDependencies = (
 			);
 			productName = SparkTests;
 			productReference = FF63AB9A2FD95AE1004C448C /* SparkTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		FF63ABA32FD95AE1004C448C /* SparkUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FF63ABB42FD95AE1004C448C /* Build configuration list for PBXNativeTarget "SparkUITests" */;
-			buildPhases = (
-				FF63ABA02FD95AE1004C448C /* Sources */,
-				FF63ABA12FD95AE1004C448C /* Frameworks */,
-				FF63ABA22FD95AE1004C448C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				FF63ABA62FD95AE1004C448C /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				FF63ABA72FD95AE1004C448C /* SparkUITests */,
-			);
-			name = SparkUITests;
-			packageProductDependencies = (
-			);
-			productName = SparkUITests;
-			productReference = FF63ABA42FD95AE1004C448C /* SparkUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -177,10 +373,6 @@
 						CreatedOnToolsVersion = 26.5;
 					};
 					FF63AB992FD95AE1004C448C = {
-						CreatedOnToolsVersion = 26.5;
-						TestTargetID = FF63AB8A2FD95AE0004C448C;
-					};
-					FF63ABA32FD95AE1004C448C = {
 						CreatedOnToolsVersion = 26.5;
 						TestTargetID = FF63AB8A2FD95AE0004C448C;
 					};
@@ -202,7 +394,6 @@
 			targets = (
 				FF63AB8A2FD95AE0004C448C /* Spark */,
 				FF63AB992FD95AE1004C448C /* SparkTests */,
-				FF63ABA32FD95AE1004C448C /* SparkUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -212,17 +403,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF63AC872FD9AA72004C448C /* Assets.xcassets in Resources */,
+				FF63AC882FD9AA72004C448C /* stories.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		FF63AB982FD95AE1004C448C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FF63ABA22FD95AE1004C448C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -236,6 +422,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF63ACC82FD9BDF0004C448C /* DependencyContainerProtocol.swift in Sources */,
+				FF63ACC92FD9BDF0004C448C /* StoryUserPageView.swift in Sources */,
+				FF63ACCA2FD9BDF0004C448C /* NetworkClient.swift in Sources */,
+				FF63ACCB2FD9BDF0004C448C /* UserState.swift in Sources */,
+				FF63ACCC2FD9BDF0004C448C /* Story.swift in Sources */,
+				FF63ACCD2FD9BDF0004C448C /* APIEndpoint.swift in Sources */,
+				FF63ACCE2FD9BDF0004C448C /* DeviceID.swift in Sources */,
+				FF63ACF02FD9BDF0004C448C /* AppLogger.swift in Sources */,
+				FF63ACCF2FD9BDF0004C448C /* StoriesView.swift in Sources */,
+				FF63ACD02FD9BDF0004C448C /* RootView.swift in Sources */,
+				FF63ACD12FD9BDF0004C448C /* MockDependencyContainer.swift in Sources */,
+				FF63ACD22FD9BDF0004C448C /* StoryAvatarView.swift in Sources */,
+				FF63ACD32FD9BDF0004C448C /* StoryDetailView.swift in Sources */,
+				FF63ACD42FD9BDF0004C448C /* LocalStoryRepository.swift in Sources */,
+				FF63ACEF2FD9BDF0004C448C /* EmptyStoryRepository.swift in Sources */,
+				FF63ACD52FD9BDF0004C448C /* PreviewMocks.swift in Sources */,
+				FF63ACD62FD9BDF0004C448C /* StoryUserPageViewModel.swift in Sources */,
+				FF63ACD72FD9BDF0004C448C /* StoryDetailViewModel.swift in Sources */,
+				FF63ACD82FD9BDF0004C448C /* StoryProgressBar.swift in Sources */,
+				FF63ACF22FD9BDF0004C448C /* CachedStoryImage.swift in Sources */,
+				FF63ACF42FD9BDF0004C448C /* CubePager.swift in Sources */,
+				FF63ACD92FD9BDF0004C448C /* DependencyContainer.swift in Sources */,
+				FF63ACDA2FD9BDF0004C448C /* MockStoryRepository.swift in Sources */,
+				FF63ACDB2FD9BDF0004C448C /* SparkApp.swift in Sources */,
+				FF63ACDC2FD9BDF0004C448C /* StoryRepository.swift in Sources */,
+				FF63ACDD2FD9BDF0004C448C /* StoryCache.swift in Sources */,
+				FF63ACDE2FD9BDF0004C448C /* RemoteStoryRepository.swift in Sources */,
+				FF63ACDF2FD9BDF0004C448C /* StoryUser.swift in Sources */,
+				FF63ACE02FD9BDF0004C448C /* AppCoordinator.swift in Sources */,
+				FF63ACE12FD9BDF0004C448C /* StoriesViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,13 +459,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FF63ABA02FD95AE1004C448C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				FF63ABFA2FD95E67004C448C /* SparkTests.swift in Sources */,
+				FFAC000000000000000000A1 /* TestSupport.swift in Sources */,
+				FFAC000000000000000000A2 /* StoriesViewModelTests.swift in Sources */,
+				FFAC000000000000000000A3 /* StoryDetailViewModelTests.swift in Sources */,
+				FFAC000000000000000000A4 /* StoryUserPageViewModelTests.swift in Sources */,
+				FFAC000000000000000000A5 /* AppCoordinatorTests.swift in Sources */,
+				FFAC000000000000000000A6 /* StoryCacheTests.swift in Sources */,
+				FFAC000000000000000000A7 /* RepositoryTests.swift in Sources */,
+				FFAC000000000000000000A8 /* ModelAndEndpointTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,11 +478,6 @@
 			isa = PBXTargetDependency;
 			target = FF63AB8A2FD95AE0004C448C /* Spark */;
 			targetProxy = FF63AB9B2FD95AE1004C448C /* PBXContainerItemProxy */;
-		};
-		FF63ABA62FD95AE1004C448C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = FF63AB8A2FD95AE0004C448C /* Spark */;
-			targetProxy = FF63ABA52FD95AE1004C448C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -330,6 +543,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = app.spark.Spark;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
 			};
 			name = Debug;
 		};
@@ -386,6 +600,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = app.spark.Spark;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_STRICT_CONCURRENCY = complete;
 			};
 			name = Release;
 		};
@@ -527,56 +742,6 @@
 			};
 			name = Release;
 		};
-		FF63ABB52FD95AE1004C448C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9GQXFYQ92W;
-				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 26.5;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)UITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-				TEST_TARGET_NAME = Spark;
-				XROS_DEPLOYMENT_TARGET = 26.5;
-			};
-			name = Debug;
-		};
-		FF63ABB62FD95AE1004C448C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9GQXFYQ92W;
-				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 26.5;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)UITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-				TEST_TARGET_NAME = Spark;
-				XROS_DEPLOYMENT_TARGET = 26.5;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -603,15 +768,6 @@
 			buildConfigurations = (
 				FF63ABB22FD95AE1004C448C /* Debug */,
 				FF63ABB32FD95AE1004C448C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		FF63ABB42FD95AE1004C448C /* Build configuration list for PBXNativeTarget "SparkUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FF63ABB52FD95AE1004C448C /* Debug */,
-				FF63ABB62FD95AE1004C448C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

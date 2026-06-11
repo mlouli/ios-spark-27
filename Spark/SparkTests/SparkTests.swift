@@ -1,18 +1,24 @@
-//
-//  SparkTests.swift
-//  SparkTests
-//
-//  Created by Mohamed Louli on 6/10/26.
-//
-
 import Testing
+@testable import Spark
 
-struct SparkTests {
-
-    @Test func example() async throws {
-        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
-        // Swift Testing Documentation
-        // https://developer.apple.com/documentation/testing
+@Suite("DependencyContainer")
+struct DependencyContainerTests {
+    @Test func mockContainerUsesInjectedRepository() {
+        let repo = MockStoryRepository()
+        let container = MockDependencyContainer(repository: repo)
+        #expect(container.storyRepository as AnyObject === repo)
     }
 
+    @Test func mockContainerDefaultsToMockRepository() {
+        let container = MockDependencyContainer()
+        #expect(container.storyRepository is MockStoryRepository)
+    }
+
+    @Test func mockContainerSeedsRepositoryState() async {
+        var state = UserState()
+        state.likedStoryIDs = ["s1"]
+        let container = MockDependencyContainer(state: state)
+        let fetched = await container.storyRepository.fetchState()
+        #expect(fetched.likedStoryIDs == ["s1"])
+    }
 }
