@@ -137,7 +137,10 @@ struct StoryUserPageView: View {
 
             Spacer()
 
-            Button { viewModel.toggleLike() } label: {
+			Button {
+				UISelectionFeedbackGenerator().selectionChanged()
+				viewModel.toggleLike()
+			} label: {
                 Image(systemName: viewModel.isLiked ? "heart.fill" : "heart")
                     .font(.title2)
                     .foregroundStyle(viewModel.isLiked ? .red : .white)

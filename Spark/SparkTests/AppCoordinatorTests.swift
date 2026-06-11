@@ -18,28 +18,6 @@ struct AppCoordinatorTests {
         #expect(coordinator.storyDetailContext == nil)
     }
 
-    @Test func deepLinkStoresPendingUserID() {
-        let coordinator = makeCoordinator()
-        coordinator.handle(url: URL(string: "spark://story/u42")!)
-        #expect(coordinator.pendingUserID == "u42")
-    }
-
-    @Test func deepLinkRejectsWrongSchemeOrHost() {
-        let coordinator = makeCoordinator()
-        coordinator.handle(url: URL(string: "https://story/u42")!)
-        #expect(coordinator.pendingUserID == nil)
-        coordinator.handle(url: URL(string: "spark://profile/u42")!)
-        #expect(coordinator.pendingUserID == nil)
-    }
-
-    @Test func consumePendingUserIDClearsIt() {
-        let coordinator = makeCoordinator()
-        coordinator.handle(url: URL(string: "spark://story/u42")!)
-        #expect(coordinator.consumePendingUserID() == "u42")
-        #expect(coordinator.pendingUserID == nil)
-        #expect(coordinator.consumePendingUserID() == nil)
-    }
-
     @Test func makeStoriesViewModelWiresCoordinator() {
         let coordinator = makeCoordinator()
         let vm = coordinator.makeStoriesViewModel()

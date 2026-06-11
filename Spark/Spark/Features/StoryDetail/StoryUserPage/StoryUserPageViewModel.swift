@@ -1,6 +1,5 @@
 import Foundation
 import Observation
-import UIKit
 
 @Observable
 final class StoryUserPageViewModel {
@@ -52,10 +51,6 @@ final class StoryUserPageViewModel {
     // MARK: - Actions
 
     func toggleLike() {
-        // Imperative haptic: fires only on the user's tap, unlike a
-        // state-triggered .sensoryFeedback which also fires when isLiked
-        // changes while navigating between stories.
-        UISelectionFeedbackGenerator().selectionChanged()
         isLiked.toggle()
         if isLiked {
             likedStoryIDs.insert(currentStory.id)
