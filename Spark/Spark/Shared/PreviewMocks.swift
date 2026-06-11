@@ -1,5 +1,8 @@
 import Foundation
 
+// Test/preview double — excluded from release builds.
+#if DEBUG
+
 enum PreviewMocks {
     static let story1 = Story(
         id: "preview_story_1",
@@ -38,3 +41,4 @@ enum PreviewMocks {
         return state
     }
 }
+#endif

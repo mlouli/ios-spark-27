@@ -9,10 +9,19 @@ import SwiftUI
 final class StoryImageLoader {
     static let shared = StoryImageLoader()
     private let cache = NSCache<NSURL, UIImage>()
-    private var inFlight: Set<URL> = []
+    private var prefetchTasks: [URL: Task<Void, Never>] = [:]
+
+    /// Stories are rendered at most at screen size — decoding the full-res
+    /// asset wastes memory (decoded bitmaps cost width × height × 4 bytes).
+    private let targetSize: CGSize = {
+        let bounds = UIScreen.main.bounds
+        let scale = UIScreen.main.scale
+        return CGSize(width: bounds.width * scale, height: bounds.height * scale)
+    }()
 
     private init() {
-        cache.countLimit = 40
+        // Budget in bytes
+        cache.totalCostLimit = 64 * 1024 * 1024
     }
 
     /// Synchronous lookup. Non-nil when the decoded image is already in memory,
@@ -26,28 +35,45 @@ final class StoryImageLoader {
         if let cached = cache.object(forKey: url as NSURL) { return cached }
         guard let (data, _) = try? await URLSession.shared.data(from: url),
               let image = UIImage(data: data) else { return nil }
-        let prepared = await image.byPreparingForDisplay() ?? image
-        cache.setObject(prepared, forKey: url as NSURL)
+        let prepared = await image.byPreparingThumbnail(ofSize: thumbnailSize(for: image))
+            ?? image
+        cache.setObject(prepared, forKey: url as NSURL, cost: pixelCost(of: prepared))
         return prepared
     }
 
     /// Warms the cache for upcoming stories so taps land instantly.
-    /// De-duplicates in-flight requests.
+    /// De-duplicates in-flight requests; tasks are cancellable as a group.
     func prefetch(_ urls: [URL]) {
         for url in urls {
-            guard cache.object(forKey: url as NSURL) == nil else { continue }
-            guard !inFlight.contains(url) else { continue }
-            inFlight.insert(url)
-            
-            Task {
+            guard cache.object(forKey: url as NSURL) == nil,
+                  prefetchTasks[url] == nil else { continue }
+            prefetchTasks[url] = Task {
                 _ = await loadImage(for: url)
-                markComplete(url)
+                prefetchTasks[url] = nil
             }
         }
     }
-    
-    private func markComplete(_ url: URL) {
-        inFlight.remove(url)
+
+    /// Stops all in-flight prefetches. Called when the story screen closes so
+    /// abandoned downloads from rapid open/close cycles don't pile up behind
+    /// the images the user actually wants next.
+    func cancelPrefetches() {
+        for task in prefetchTasks.values { task.cancel() }
+        prefetchTasks.removeAll()
+    }
+
+    private func thumbnailSize(for image: UIImage) -> CGSize {
+        let pixelWidth = image.size.width * image.scale
+        let pixelHeight = image.size.height * image.scale
+        guard pixelWidth > targetSize.width || pixelHeight > targetSize.height else {
+            return CGSize(width: pixelWidth, height: pixelHeight)
+        }
+        let ratio = min(targetSize.width / pixelWidth, targetSize.height / pixelHeight)
+        return CGSize(width: pixelWidth * ratio, height: pixelHeight * ratio)
+    }
+
+    private func pixelCost(of image: UIImage) -> Int {
+        Int(image.size.width * image.scale * image.size.height * image.scale * 4)
     }
 }
 

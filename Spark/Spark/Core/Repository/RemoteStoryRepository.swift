@@ -79,10 +79,17 @@ actor RemoteStoryRepository: StoryRepositoryProtocol {
     // MARK: - Mutations
 
     func markSeen(storyID: String) async {
+        await markSeen(storyIDs: [storyID])
+    }
+
+    func markSeen(storyIDs: [String]) async {
         var state = cachedState()
-        guard !state.seenStoryIDs.contains(storyID) else { return }
-        state.seenStoryIDs.insert(storyID)
-        state.pendingActions.append(PendingAction(storyID: storyID, type: .seen))
+        let new = storyIDs.filter { !state.seenStoryIDs.contains($0) }
+        guard !new.isEmpty else { return }
+        for storyID in new {
+            state.seenStoryIDs.insert(storyID)
+            state.pendingActions.append(PendingAction(storyID: storyID, type: .seen))
+        }
         persistState(state)
         if isConnected { await flushPendingActions() }
     }
@@ -102,31 +109,52 @@ actor RemoteStoryRepository: StoryRepositoryProtocol {
 
     // MARK: - Sync
 
+    /// Only one flush loop runs at a time — concurrent callers return
+    /// immediately and their freshly queued actions are picked up by the
+    /// running loop's next pass. Without this, every markSeen/toggleLike
+    /// will spawn its own serial network loop over the same queue.
+    private var isFlushing = false
+
     func flushPendingActions() async {
-        var state = cachedState()
-        guard !state.pendingActions.isEmpty else { return }
+        guard !isFlushing else { return }
+        isFlushing = true
+        defer { isFlushing = false }
 
-        var failed: [PendingAction] = []
-        for action in state.pendingActions {
-            do {
-                try await performWithBackoff {
-                    switch action.type {
-                    case .seen:
-                        try await self.client.request(.seen(userID: self.userID, storyID: action.storyID))
-                    case .like:
-                        try await self.client.request(.like(userID: self.userID, storyID: action.storyID, isLiked: true))
-                    case .unlike:
-                        try await self.client.request(.like(userID: self.userID, storyID: action.storyID, isLiked: false))
+        while true {
+            let batch = cachedState().pendingActions
+            guard !batch.isEmpty else { return }
+
+            var failed: [PendingAction] = []
+            for action in batch {
+                do {
+                    try await performWithBackoff {
+                        switch action.type {
+                        case .seen:
+                            try await self.client.request(.seen(userID: self.userID, storyID: action.storyID))
+                        case .like:
+                            try await self.client.request(.like(userID: self.userID, storyID: action.storyID, isLiked: true))
+                        case .unlike:
+                            try await self.client.request(.like(userID: self.userID, storyID: action.storyID, isLiked: false))
+                        }
                     }
+                } catch {
+                    AppLogger.repository.error("Pending action failed permanently: \(action.storyID, privacy: .public) \(action.type.rawValue, privacy: .public) — \(error, privacy: .public)")
+                    failed.append(action)
                 }
-            } catch {
-                AppLogger.repository.error("Pending action failed permanently: \(action.storyID, privacy: .public) \(action.type.rawValue, privacy: .public) — \(error, privacy: .public)")
-                failed.append(action)
             }
-        }
 
-        state.pendingActions = failed
-        persistState(state)
+            // Merge instead of overwrite: actions appended while we were
+            // sending (the actor suspends at every network await) must survive.
+            var state = cachedState()
+            let batchIDs = Set(batch.map(\.id))
+            let appendedMidFlight = state.pendingActions.filter { !batchIDs.contains($0.id) }
+            state.pendingActions = failed + appendedMidFlight
+            persistState(state)
+
+            // Loop again only for fresh work we can plausibly send — if the
+            // whole batch failed, retrying immediately would spin.
+            guard !appendedMidFlight.isEmpty, failed.count < batch.count else { return }
+        }
     }
 
     // Retries up to 3 times with exponential backoff (0.5s → 1s → 2s).

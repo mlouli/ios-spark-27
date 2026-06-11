@@ -60,6 +60,15 @@ struct LocalStoryRepositoryTests {
         #expect(state.seenStoryIDs.contains("s1"))
     }
 
+    @Test func markSeenBatchPersistsAllAndSkipsDuplicates() async {
+        await repo.markSeen(storyID: "s1")
+        await repo.markSeen(storyIDs: ["s1", "s2", "s3"])
+        let state = await repo.fetchState()
+        #expect(state.seenStoryIDs == ["s1", "s2", "s3"])
+        // s1 was already seen — only s2 and s3 may queue pending actions.
+        #expect(state.pendingActions.allSatisfy { $0.storyID != "s1" } || state.pendingActions.isEmpty)
+    }
+
     @Test func toggleLikePersistsAndUnlikes() async {
         await repo.toggleLike(storyID: "s1", isLiked: true)
         var state = await repo.fetchState()

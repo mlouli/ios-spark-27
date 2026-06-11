@@ -1,5 +1,8 @@
 import Foundation
 
+// Test/preview double — excluded from release builds.
+#if DEBUG
+
 final class MockStoryRepository: StoryRepositoryProtocol {
     // MARK: - Configuration
 
@@ -56,6 +59,13 @@ final class MockStoryRepository: StoryRepositoryProtocol {
         state.seenStoryIDs.insert(storyID)
     }
 
+    func markSeen(storyIDs: [String]) async {
+        for storyID in storyIDs {
+            seenStoryIDs.append(storyID)
+            state.seenStoryIDs.insert(storyID)
+        }
+    }
+
     func toggleLike(storyID: String, isLiked: Bool) async {
         likeCallArgs.append((storyID, isLiked))
         if isLiked {
@@ -80,3 +90,4 @@ final class MockStoryRepository: StoryRepositoryProtocol {
         fetchError = nil
     }
 }
+#endif

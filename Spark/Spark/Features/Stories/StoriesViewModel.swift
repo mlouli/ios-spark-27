@@ -23,6 +23,7 @@ final class StoriesViewModel {
     // MARK: - Load
 
     func load() async {
+        guard !isLoading else { return }
         error = nil
         hasReachedEnd = false
         isLoading = true

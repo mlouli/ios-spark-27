@@ -51,6 +51,7 @@ struct StoryDetailView: View {
         }
         .onDisappear {
             UIApplication.shared.isIdleTimerDisabled = false
+            StoryImageLoader.shared.cancelPrefetches()
         }
     }
 
@@ -76,6 +77,7 @@ struct StoryDetailView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     let coordinator = AppCoordinator(dependencies: MockDependencyContainer(state: PreviewMocks.userState))
     let context = AppCoordinator.StoryDetailContext(
@@ -92,3 +94,4 @@ struct StoryDetailView: View {
         onDismiss: { _ in }
     )
 }
+#endif

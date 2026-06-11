@@ -56,10 +56,15 @@ struct StoriesView: View {
 			.frame(height: 120)
             .onChange(of: viewModel.scrollTargetUserID) { _, id in
                 guard let id else { return }
-                withAnimation(.easeInOut(duration: 0.35)) {
-                    proxy.scrollTo(id, anchor: .center)
+                // Deferred a runloop: this fires while the story detail is
+                // mid-teardown, and scrolling a lazy stack (which realizes
+                // every intervening avatar) in the same frame causes a hitch.
+                Task { @MainActor in
+                    withAnimation(.easeInOut(duration: 0.35)) {
+                        proxy.scrollTo(id, anchor: .center)
+                    }
+                    viewModel.clearScrollTarget()
                 }
-                viewModel.clearScrollTarget()
             }
         }
     }
@@ -94,6 +99,7 @@ struct StoriesView: View {
     }
 }
 
+#if DEBUG
 #Preview("Normal") {
     let coordinator = AppCoordinator(dependencies: MockDependencyContainer(state: PreviewMocks.userState))
 	StoriesView(viewModel: coordinator.makeStoriesViewModel())
@@ -103,3 +109,4 @@ struct StoriesView: View {
     let container = MockDependencyContainer(repository: EmptyStoryRepository())
     StoriesView(viewModel: AppCoordinator(dependencies: container).makeStoriesViewModel())
 }
+#endif

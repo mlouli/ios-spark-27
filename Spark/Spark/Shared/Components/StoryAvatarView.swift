@@ -64,6 +64,7 @@ struct StoryAvatarView: View {
     }
 }
 
+#if DEBUG
 #Preview("Unseen") {
     StoryAvatarView(user: PreviewMocks.user, isSeen: false)
         .padding()
@@ -73,3 +74,4 @@ struct StoryAvatarView: View {
     StoryAvatarView(user: PreviewMocks.seenUser, isSeen: true)
         .padding()
 }
+#endif

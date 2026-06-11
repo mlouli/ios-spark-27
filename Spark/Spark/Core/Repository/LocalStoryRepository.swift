@@ -53,10 +53,17 @@ actor LocalStoryRepository: StoryRepositoryProtocol {
     // MARK: - Mutations
 
     func markSeen(storyID: String) async {
+        await markSeen(storyIDs: [storyID])
+    }
+
+    func markSeen(storyIDs: [String]) async {
         var state = await fetchState()
-        guard !state.seenStoryIDs.contains(storyID) else { return }
-        state.seenStoryIDs.insert(storyID)
-        state.pendingActions.append(PendingAction(storyID: storyID, type: .seen))
+        let new = storyIDs.filter { !state.seenStoryIDs.contains($0) }
+        guard !new.isEmpty else { return }
+        for storyID in new {
+            state.seenStoryIDs.insert(storyID)
+            state.pendingActions.append(PendingAction(storyID: storyID, type: .seen))
+        }
         persist(state)
         if isConnected { await flushPendingActions() }
     }

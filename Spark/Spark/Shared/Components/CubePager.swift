@@ -148,8 +148,11 @@ struct CubePager<Item: Identifiable, Content: View>: View {
         case .vertical:
             if value.translation.height > 140
                 || value.predictedEndTranslation.height > 500 {
-                withAnimation(.easeOut(duration: 0.25)) { dragY = 1000 }
-                Task { try? await Task.sleep(for: .seconds(0.25)); onDismiss() }
+                withAnimation(.easeOut(duration: 0.25)) {
+                    dragY = 1000
+                } completion: {
+                    onDismiss()
+                }
             } else {
                 withAnimation(.spring(response: 0.35, dampingFraction: 0.85)) { dragY = 0 }
             }

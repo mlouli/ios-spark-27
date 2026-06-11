@@ -5,6 +5,7 @@ struct StoryUserPageView: View {
     @State private var viewModel: StoryUserPageViewModel
     @State private var timerProgress: CGFloat = 0
     @State private var timerTask: Task<Void, Never>?
+    @State private var seenTask: Task<Void, Never>?
     @State private var pressStart: Date?
 
     let isActive: Bool
@@ -67,7 +68,10 @@ struct StoryUserPageView: View {
                 startTimer(from: timerProgress)
             }
         }
-        .onDisappear { timerTask?.cancel() }
+        .onDisappear {
+            timerTask?.cancel()
+            seenTask?.cancel()
+        }
     }
 
     // MARK: - Subviews
@@ -179,7 +183,8 @@ struct StoryUserPageView: View {
 
     private func activate() {
         prefetchUpcoming()
-        Task { await viewModel.markAllStoriesSeen() }
+        seenTask?.cancel()
+        seenTask = Task { await viewModel.markAllStoriesSeen() }
         startTimer()
     }
 
@@ -193,6 +198,7 @@ struct StoryUserPageView: View {
 
     private func deactivate() {
         timerTask?.cancel()
+        seenTask?.cancel()
         timerProgress = 0
         viewModel.resume()
     }
@@ -242,6 +248,7 @@ struct StoryUserPageView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     let coordinator = AppCoordinator(dependencies: MockDependencyContainer(state: PreviewMocks.userState))
     let context = AppCoordinator.StoryDetailContext(
@@ -262,3 +269,4 @@ struct StoryUserPageView: View {
         onDismiss: {}
     )
 }
+#endif

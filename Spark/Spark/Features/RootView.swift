@@ -3,6 +3,7 @@ import SwiftUI
 struct RootView: View {
     @State private var coordinator: AppCoordinator
 	@State private var storiesViewModel: StoriesViewModel
+	@State private var detailViewModel: StoryDetailViewModel?
 
     init(coordinator: AppCoordinator) {
         _coordinator = State(initialValue: coordinator)
@@ -23,24 +24,34 @@ struct RootView: View {
 			.navigationBarTitleDisplayMode(.inline)
 		}
 		.overlay {
-			if let context = coordinator.storyDetailContext {
-				storyDetail(context)
+			if let detailViewModel {
+				storyDetail(detailViewModel)
 			}
 		}
 		// Hands the live instance to the coordinator for scroll-on-dismiss.
 		.onAppear { coordinator.storiesViewModel = storiesViewModel }
-    }
-
-	// MARK: - Story detail
-
-	private func storyDetail(_ context: AppCoordinator.StoryDetailContext) -> some View {
-		StoryDetailView(
-			viewModel: coordinator.makeStoryDetailViewModel(
+		// One view model per presentation — creating it inside the overlay
+		// closure would allocate a fresh one on every body re-evaluation
+		// while the detail is open.
+		.onChange(of: coordinator.storyDetailContext?.id) { _, _ in
+			guard let context = coordinator.storyDetailContext else {
+				detailViewModel = nil
+				return
+			}
+			detailViewModel = coordinator.makeStoryDetailViewModel(
 				context: context,
 				loadMore: { await storiesViewModel.loadMore() },
 				onStorySeen: { storiesViewModel.markSeen(storyID: $0) },
 				onLikeChanged: { storiesViewModel.setLiked(storyID: $0, liked: $1) }
-			),
+			)
+		}
+    }
+
+	// MARK: - Story detail
+
+	private func storyDetail(_ viewModel: StoryDetailViewModel) -> some View {
+		StoryDetailView(
+			viewModel: viewModel,
 			onDismiss: { lastUserID in
 				coordinator.dismissStories(lastUserID: lastUserID)
 			}
@@ -68,6 +79,8 @@ struct RootView: View {
 	}
 }
 
+#if DEBUG
 #Preview {
     RootView(coordinator: AppCoordinator(dependencies: MockDependencyContainer(state: PreviewMocks.userState)))
 }
+#endif

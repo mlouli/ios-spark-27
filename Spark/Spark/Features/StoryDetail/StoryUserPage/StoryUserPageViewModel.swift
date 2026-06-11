@@ -71,8 +71,10 @@ final class StoryUserPageViewModel {
     func markAllStoriesSeen() async {
         for story in user.stories {
             onStorySeen(story.id)
-            await repository.markSeen(storyID: story.id)
         }
+        // One repository call for the whole set — per-story calls each spawned
+        // a state write and a network flush of the entire pending queue.
+        await repository.markSeen(storyIDs: user.stories.map(\.id))
     }
 
     func pause() { isPaused = true }
