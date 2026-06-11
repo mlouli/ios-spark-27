@@ -4,7 +4,6 @@ import Observation
 @Observable
 final class AppCoordinator {
     var storyDetailContext: StoryDetailContext?
-    private(set) var pendingUserID: String?
 	let dependencies: DependencyContainerProtocol
 
 	var storiesViewModel: StoriesViewModel?
