@@ -5,7 +5,8 @@ import SwiftUI
 /// an image is cached, landing on its story is an instant, synchronous render
 /// with no placeholder flash and no decode hitch — the key to smooth, rapid
 /// tapping through stories.
-actor StoryImageLoader {
+@MainActor
+final class StoryImageLoader {
     static let shared = StoryImageLoader()
     private let cache = NSCache<NSURL, UIImage>()
     private var inFlight: Set<URL> = []
@@ -82,7 +83,7 @@ struct CachedStoryImage: View {
         // Re-runs (cancelling the prior load) whenever the URL or retry token
         // changes. The synchronous cache hit below renders in the same frame.
         .task(id: "\(url.absoluteString)#\(retryToken)") {
-			if let cached = await StoryImageLoader.shared.cachedImage(for: url) {
+            if let cached = StoryImageLoader.shared.cachedImage(for: url) {
                 image = cached
                 didFail = false
                 return

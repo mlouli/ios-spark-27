@@ -1,12 +1,12 @@
 import Foundation
 import OSLog
 
-enum NetworkError: Error {
+nonisolated enum NetworkError: Error {
     case invalidResponse(statusCode: Int)
     case decodingFailed(Error)
 }
 
-final class NetworkClient {
+nonisolated final class NetworkClient {
     private let baseURL: URL
     private let session: URLSession
     private let decoder: JSONDecoder

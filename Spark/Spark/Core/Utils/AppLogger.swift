@@ -1,11 +1,11 @@
 import Foundation
 import OSLog
 
-enum AppConfig {
+nonisolated enum AppConfig {
 	static let bundleID = Bundle.main.bundleIdentifier ?? "app.spark.Spark"
 }
 
-enum AppLogger {
+nonisolated enum AppLogger {
     static let network    = Logger(subsystem: AppConfig.bundleID, category: "network")
     static let cache      = Logger(subsystem: AppConfig.bundleID, category: "cache")
     static let repository = Logger(subsystem: AppConfig.bundleID, category: "repository")

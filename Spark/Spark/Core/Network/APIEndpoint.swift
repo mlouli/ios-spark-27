@@ -1,11 +1,11 @@
 import Foundation
 
-enum HTTPMethod: String {
+nonisolated enum HTTPMethod: String {
     case get = "GET"
     case post = "POST"
 }
 
-enum APIEndpoint {
+nonisolated enum APIEndpoint {
     case stories(page: Int, limit: Int)
     case state(userID: String)
     case like(userID: String, storyID: String, isLiked: Bool)
@@ -57,13 +57,13 @@ extension APIEndpoint {
 
 // MARK: - Request body types
 
-private struct LikeBody: Encodable {
+private nonisolated struct LikeBody: Encodable {
     let userID: String
     let storyID: String
     let isLiked: Bool
 }
 
-private struct SeenBody: Encodable {
+private nonisolated struct SeenBody: Encodable {
     let userID: String
     let storyID: String
 }

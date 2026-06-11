@@ -3,7 +3,7 @@ import Foundation
 /// Local mirror of server-side user interaction state.
 /// Acts as a cache that gets overwritten on successful server fetch,
 /// and accumulates pending actions while offline.
-struct UserState: Codable {
+nonisolated struct UserState: Codable {
     var likedStoryIDs: Set<String>
     var seenStoryIDs: Set<String>
     var pendingActions: [PendingAction]
@@ -15,7 +15,7 @@ struct UserState: Codable {
     }
 }
 
-struct PendingAction: Codable, Identifiable {
+nonisolated struct PendingAction: Codable, Identifiable {
     enum ActionType: String, Codable {
         case like, unlike, seen
     }

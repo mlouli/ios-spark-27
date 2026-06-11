@@ -45,17 +45,17 @@ actor RemoteStoryRepository: StoryRepositoryProtocol {
 
     func fetchUsers(page: Int, limit: Int) async throws -> [StoryUser] {
         // Offline: return cache immediately — no point waiting for a timeout.
-        if !isConnected, let cached = await cache.retrieve(page: page, limit: limit) {
+        if !isConnected, let cached = cache.retrieve(page: page, limit: limit) {
             return cached
         }
         do {
             let users: [StoryUser] = try await client.request(.stories(page: page, limit: limit))
-			await cache.store(users, page: page, limit: limit)
+            cache.store(users, page: page, limit: limit)
             return users
         } catch {
             // Network failed — serve stale cache rather than an empty screen.
-            if let cached = await cache.retrieve(page: page, limit: limit) {
-				await AppLogger.repository.info("Serving cached stories for page \(page) after network failure")
+            if let cached = cache.retrieve(page: page, limit: limit) {
+                AppLogger.repository.info("Serving cached stories for page \(page) after network failure")
                 return cached
             }
             throw error
@@ -71,7 +71,7 @@ actor RemoteStoryRepository: StoryRepositoryProtocol {
             persistState(state)
             return state
         } catch {
-			await AppLogger.repository.warning("fetchState failed, using local cache — \(error, privacy: .public)")
+            AppLogger.repository.warning("fetchState failed, using local cache — \(error, privacy: .public)")
             return cachedState()
         }
     }
@@ -82,7 +82,7 @@ actor RemoteStoryRepository: StoryRepositoryProtocol {
         var state = cachedState()
         guard !state.seenStoryIDs.contains(storyID) else { return }
         state.seenStoryIDs.insert(storyID)
-		await state.pendingActions.append(PendingAction(storyID: storyID, type: .seen))
+        state.pendingActions.append(PendingAction(storyID: storyID, type: .seen))
         persistState(state)
         if isConnected { await flushPendingActions() }
     }
@@ -91,10 +91,10 @@ actor RemoteStoryRepository: StoryRepositoryProtocol {
         var state = cachedState()
         if isLiked {
             state.likedStoryIDs.insert(storyID)
-			await state.pendingActions.append(PendingAction(storyID: storyID, type: .like))
+            state.pendingActions.append(PendingAction(storyID: storyID, type: .like))
         } else {
             state.likedStoryIDs.remove(storyID)
-			await state.pendingActions.append(PendingAction(storyID: storyID, type: .unlike))
+            state.pendingActions.append(PendingAction(storyID: storyID, type: .unlike))
         }
         persistState(state)
         if isConnected { await flushPendingActions() }
@@ -120,7 +120,7 @@ actor RemoteStoryRepository: StoryRepositoryProtocol {
                     }
                 }
             } catch {
-				await AppLogger.repository.error("Pending action failed permanently: \(action.storyID, privacy: .public) \(action.type.rawValue, privacy: .public) — \(error, privacy: .public)")
+                AppLogger.repository.error("Pending action failed permanently: \(action.storyID, privacy: .public) \(action.type.rawValue, privacy: .public) — \(error, privacy: .public)")
                 failed.append(action)
             }
         }
@@ -139,7 +139,7 @@ actor RemoteStoryRepository: StoryRepositoryProtocol {
                 return
             } catch {
                 guard isConnected, attempt < 3 else { throw error }
-				await AppLogger.repository.warning("Action failed, retrying (attempt \(attempt + 1)/3) — \(error, privacy: .public)")
+                AppLogger.repository.warning("Action failed, retrying (attempt \(attempt + 1)/3) — \(error, privacy: .public)")
                 try? await Task.sleep(nanoseconds: delayNs)
                 delayNs *= 2
             }

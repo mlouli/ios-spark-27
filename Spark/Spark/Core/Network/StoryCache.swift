@@ -5,7 +5,7 @@ import UniformTypeIdentifiers
 /// File-based cache for paginated story content.
 /// Stored in the system Caches directory — iOS may evict entries under storage
 /// pressure, which is acceptable: the app degrades gracefully to a network fetch.
-final class StoryCache {
+nonisolated final class StoryCache {
     private let encoder: JSONEncoder
     private let decoder: JSONDecoder
     private let directory: URL

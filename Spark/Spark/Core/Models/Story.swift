@@ -1,6 +1,6 @@
 import Foundation
 
-struct Story: Identifiable, Codable, Hashable {
+nonisolated struct Story: Identifiable, Codable, Hashable {
     let id: String
     let imageSeed: String
     let caption: String
