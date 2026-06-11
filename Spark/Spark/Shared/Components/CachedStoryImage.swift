@@ -40,7 +40,7 @@ actor StoryImageLoader {
             
             Task {
                 _ = await loadImage(for: url)
-                await markComplete(url)
+                markComplete(url)
             }
         }
     }
@@ -82,7 +82,7 @@ struct CachedStoryImage: View {
         // Re-runs (cancelling the prior load) whenever the URL or retry token
         // changes. The synchronous cache hit below renders in the same frame.
         .task(id: "\(url.absoluteString)#\(retryToken)") {
-            if let cached = StoryImageLoader.shared.cachedImage(for: url) {
+			if let cached = await StoryImageLoader.shared.cachedImage(for: url) {
                 image = cached
                 didFail = false
                 return
