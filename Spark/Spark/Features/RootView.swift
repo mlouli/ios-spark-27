@@ -2,18 +2,18 @@ import SwiftUI
 
 struct RootView: View {
     @State private var coordinator: AppCoordinator
+	@State private var storiesViewModel: StoriesViewModel
 
     init(coordinator: AppCoordinator) {
         _coordinator = State(initialValue: coordinator)
+		_storiesViewModel = State(initialValue: coordinator.makeStoriesViewModel())
     }
 
     var body: some View {
-		let vm = coordinator.makeStoriesViewModel()
-
 		NavigationStack {
 			ScrollView {
 				VStack {
-					StoriesView(viewModel: vm)
+					StoriesView(viewModel: storiesViewModel)
 					Divider()
 					feedPlaceholder
 				}
@@ -23,23 +23,22 @@ struct RootView: View {
 		}
 		.overlay {
 			if let context = coordinator.storyDetailContext {
-				storyDetail(vm, context)
+				storyDetail(context)
 			}
 		}
+		// Hands the live instance to the coordinator for scroll-on-dismiss.
+		.onAppear { coordinator.storiesViewModel = storiesViewModel }
     }
 
 	// MARK: - Story detail
 
-	private func storyDetail(
-		_ vm: StoriesViewModel,
-		_ context: AppCoordinator.StoryDetailContext
-	) -> some View {
+	private func storyDetail(_ context: AppCoordinator.StoryDetailContext) -> some View {
 		StoryDetailView(
 			viewModel: coordinator.makeStoryDetailViewModel(
 				context: context,
-				loadMore: { await vm.loadMore() },
-				onStorySeen: { vm.markSeen(storyID: $0) },
-				onLikeChanged: { vm.setLiked(storyID: $0, liked: $1) }
+				loadMore: { await storiesViewModel.loadMore() },
+				onStorySeen: { storiesViewModel.markSeen(storyID: $0) },
+				onLikeChanged: { storiesViewModel.setLiked(storyID: $0, liked: $1) }
 			),
 			onDismiss: { lastUserID in
 				coordinator.dismissStories(lastUserID: lastUserID)
